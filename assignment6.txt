@@ -1,0 +1,198 @@
+
+
+Q 1 .Write a function that accept an integer array and an integer 
+   as parameters and will return number of occurrences of element 
+   in the array
+
+#! /bin/sh
+ fun()
+{
+shift
+cnt=0
+for i in $@
+do
+        if (( $n == $i ))
+        then
+                (( cnt++ ))
+        fi
+done
+echo "$n occurs in array in $cnt times."
+}
+echo "Enter the array : "
+read -a arr
+echo "Number : "
+read n
+fun ${arr[@]} $n
+
+
+
+Q 2. Write a shell functions to accept n numbers 
+     in an array and return largest and smallest element of array
+
+#! /bin/sh
+
+max()
+{
+ max=$1
+for i in $@
+do
+ if [ $i -gt $max ]
+ then
+  max=$i
+ fi
+done
+return $max
+}
+
+min()
+{
+ min=$1
+ for i in $@
+ do
+  if [ $i -lt $min ]
+  then
+   min=$i
+  fi
+ done
+ return $min
+
+}
+
+echo "Enter the no : "
+read -a arr
+min ${arr[@]}
+a=$min
+echo "Smallest number in the arra is : $a "
+max ${arr[@]}
+b=$max
+echo "largest number in the array is : $b "
+
+
+Q 3. Write a function to accept character and return 1 if it vowel and 0 otherwise.
+     Use this function in main to accept a character and display it is vowel or not
+      (use Switch case in function to check for vowel) 
+
+#! /bin/sh
+
+check()
+{
+case "$ch" in
+
+"a") echo "1" ;;
+"e") echo "1" ;;
+"i") echo "1" ;;
+"o") echo "1" ;;
+"u") echo "1" ;;
+"A") echo "1" ;;
+"E") echo "1" ;;
+"I") echo "1" ;;
+"O") echo "1" ;;
+"U") echo "1";;
+*) echo "0" 
+esac
+}
+read -p "Enter the cahracter : " ch
+check $ch
+
+
+
+Q 4 .Write a function isEven, which accepts an integer as parameter and returns 
+      1 if the number is isEven, and 0 otherwise .Use this function in main to 
+     accept n numbers and check if they are even or odd
+
+#! /bin/sh
+
+even()
+{
+
+for i in $@
+do
+remainder=$(( $i % 2 ))
+
+if [ $remainder = 0 ]
+then
+  echo "$i = 1"
+else
+  echo "$i = 0"
+fi
+done
+}
+echo -n "Enter numnber : "
+read -a arr
+even ${arr[@]}
+
+
+Q.5 . Write a function isPrime which accepts as integer as parameter and returns 1 if the number is prime and 0 otherwise .Use this function in main to display the prime numbers between 1 to 50
+
+#! /bin/sh
+prime()
+{
+for (( i=1; i<50; i++ ))
+do
+ flag=0
+for (( j=2; j<i; j++ ))
+do
+ if [ expr $i % $j -eq 0 ]
+ then
+  flag=1
+ fi
+done
+
+if [ $flag -eq 1 ]
+then
+ echo "$i Not a prime number"
+else
+ echo " $i prime numbers"
+fi
+done
+}
+prime
+
+
+Q .6  Write a function to accept an integer and return sum of digits of the given number
+
+#!/bin/sh
+
+add()
+{
+read -p "Enter the number :" n
+if (( $n == 0 ))
+then
+	echo "[-] Please enter the number greater then zero"
+	exit 0
+fi
+sum=0
+while (( $n > 0 ))
+do
+rem=$(( $n % 10 ))
+n=$(( $n / 10 ))
+sum=$(( $sum + $rem ))
+done
+echo "addition : $sum"
+}
+add
+
+
+Q.7  Write a function to accept two integers x and y and calculate sum of all integers between x and y /both inclusive
+
+#!/bin/sh
+
+test()
+{
+read -p "Start : " n
+read -p "End :" m
+
+sum=0
+for (( i=$n; i<=$m; i++ ))
+do
+	if (( $i <= $m ))
+	then
+		sum=$(( $sum + $i ))
+	fi
+done
+
+echo "Addition of number between $n and $m is $sum"
+
+}
+
+test # function call
